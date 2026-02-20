@@ -42,58 +42,87 @@
     <main>
         <section class="section">
             <div class="container">
-                <div class="grid col-2 stack-mobile" style="align-items: center;">
-                    <div class="registration-info">
-                        <h1 class="gradient-text">Secure Your Spot</h1>
-                        <p>Applications are reviewed on a rolling basis. The sooner you apply, the better your chances
-                            of being accepted into the 2026 cohort.</p>
-                        <ul class="features-list" style="list-style: none;">
-                            <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> Free and Hybrid
-                                Experience</li>
-                            <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> Team Matching
-                                Assistance</li>
-                            <li><i class="fas fa-check-circle" style="color: var(--secondary);"></i> Access to Discord
-                                Community</li>
-                        </ul>
-                        <div class="glass-card" style="margin-top: 2rem;">
-                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1000"
-                                alt="Teamwork" style="width: 100%; border-radius: 10px;">
+                <div class="contact-grid">
+                    <!-- Left Side: Interactive Image & Message (Harris Apex Style) -->
+                    <div class="contact-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000"
+                            alt="Cyberpunk Registration" class="contact-img">
+                        <div class="contact-image-overlay">
+                            <h3>Join the <span>Apex</span> of Hackers</h3>
+                            <p>Collaborate with the brightest minds in tech. Secure your spot in the 2026 digital
+                                transformation.</p>
+                            <div class="registration-features" style="margin-top: 1.5rem;">
+                                <div style="margin-bottom: 0.5rem;"><i class="fas fa-microchip"></i> Global Hybrid Event
+                                </div>
+                                <div style="margin-bottom: 0.5rem;"><i class="fas fa-vial"></i> $50k+ Prize Pool</div>
+                                <div><i class="fas fa-users"></i> Mentorship from Experts</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="registration-wrapper glass-card">
-                        <!-- Professional Form with Email Delivery to fatherlooks1@gmail.com -->
-                        <form action="https://formspree.io/fatherlooks1@gmail.com" method="POST" id="hacker-form"
+                    <!-- Right Side: Redesigned Form -->
+                    <div class="contact-form-wrapper">
+                        <!-- Switched to FormSubmit for easier activation and reliability -->
+                        <form action="https://formsubmit.co/ajax/fatherlooks1@gmail.com" method="POST" id="hacker-form"
                             class="hacker-form">
+                            <!-- Anti-spam and Configuration -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_subject" value="New Hackathon Application!">
+                            <h2 style="margin-bottom: 2rem;">Application <span class="gradient-text">Portal</span></h2>
                             <div class="grid col-2">
                                 <div class="form-group">
                                     <label for="name">Full Name</label>
-                                    <input type="text" name="FullName" id="name" placeholder="Sarah Connor" required>
+                                    <input type="text" name="FullName" id="name" class="form-input"
+                                        placeholder="Aris Thorne" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="Email" id="email" placeholder="sarah@tech.com" required>
+                                    <label for="email">Email Address</label>
+                                    <input type="email" name="Email" id="email" class="form-input"
+                                        placeholder="aris@example.com" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="track">Interest Track</label>
-                                <select name="Track" id="track">
-                                    <option value="AI & ML">AI & ML</option>
+                                <label for="track">Target Track</label>
+                                <select name="Track" id="track" class="form-input">
+                                    <option value="AI & ML">AI & Generative Systems</option>
                                     <option value="DeFi & Web3">DeFi & Web3</option>
-                                    <option value="Sustainability">Sustainability</option>
+                                    <option value="Green Tech">Sustainability & Green Tech</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="github">Project Link (GitHub/Behance)</label>
-                                <input type="url" name="Portfolio" id="github"
-                                    placeholder="https://github.com/your-work">
+                                <label for="github">Portfolio / GitHub Link</label>
+                                <input type="url" name="Portfolio" id="github" class="form-input"
+                                    placeholder="https://github.com/your-code">
                             </div>
                             <div class="form-group">
-                                <label for="message">Your Experience</label>
-                                <textarea name="Experience" id="message" rows="4"
-                                    placeholder="Tell us about the cool things you have built..."></textarea>
+                                <label for="message">Tell us your vision</label>
+                                <textarea name="Experience" id="message" rows="4" class="form-input"
+                                    placeholder="What will you build during the 48-hour sprint?"></textarea>
                             </div>
-                            <button type="submit" class="btn-primary full-width">Submit Application</button>
+
+                            <!-- Payment Section (Professional Box) -->
+                            <div class="payment-info-box"
+                                style="background: rgba(162, 89, 255, 0.1); border: 1px dashed var(--primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i
+                                        class="fas fa-wallet"></i> Registration Fee: $10 / KES 1,300</h4>
+                                <p style="font-size: 0.9rem; margin-bottom: 1rem;">Please complete your payment to
+                                    finalize your application.</p>
+                                <div class="paybill-details" style="display: flex; align-items: center; gap: 15px;">
+                                    <div
+                                        style="background: white; color: black; padding: 5px 15px; border-radius: 6px; font-weight: 800; font-family: monospace;">
+                                        PAYBILL: 7382528</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-dim);">Acc: Your Name</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="transaction">Payment Transaction Code</label>
+                                <input type="text" name="TransactionCode" id="transaction" class="form-input"
+                                    placeholder="e.g. SKY98765432" required>
+                            </div>
+
+                            <button type="submit" class="btn-primary full-width large">Launch Application</button>
                         </form>
                     </div>
                 </div>

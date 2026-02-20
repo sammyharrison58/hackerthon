@@ -263,6 +263,84 @@ nav {
     align-items: center;
 }
 
+/* Redesigned Contact Grid (Harris Apex Style) */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 32px;
+    overflow: hidden;
+    max-width: 1100px;
+    margin: 0 auto;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+}
+
+.contact-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    min-height: 450px;
+}
+
+.contact-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-image-wrapper:hover .contact-img {
+    transform: scale(1.1);
+}
+
+.contact-image-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 3rem;
+    background: linear-gradient(to top, rgba(5, 5, 8, 0.95), rgba(5, 5, 8, 0.2));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.contact-image-overlay h3 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.contact-image-overlay h3 span {
+    color: var(--secondary);
+}
+
+.contact-image-overlay p {
+    color: var(--text-dim);
+    max-width: 320px;
+}
+
+.contact-form-wrapper {
+    padding: 4rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
 .countdown {
     display: flex;
     gap: 1rem;
@@ -523,6 +601,19 @@ nav {
 
     .section {
         padding: 60px 0;
+    }
+
+    /* Grid Stacking on Mobile */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-image-wrapper {
+        min-height: 300px;
+    }
+
+    .contact-form-wrapper {
+        padding: 2.5rem 1.5rem;
     }
 }
 
