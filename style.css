@@ -317,6 +317,71 @@ nav {
     font-weight: 500;
 }
 
+/* Speaker Cards */
+.speaker-img {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.speaker-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.speaker-bio {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin: 1rem 0;
+}
+
+.social-icons.small a {
+    font-size: 1.1rem;
+}
+
+/* FAQ Accordion */
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    padding: 1.5rem !important;
+    cursor: pointer;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    margin-top: 1.5rem;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(45deg);
+}
+
 /* Countdown Timer */
 .countdown {
     display: flex;

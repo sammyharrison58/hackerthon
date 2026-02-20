@@ -112,4 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 1000);
     }
+
+    // FAQ Accordion Logic
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
 });
