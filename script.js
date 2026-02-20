@@ -13,24 +13,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active-mobile');
-        mobileMenuBtn.classList.toggle('open');
-    });
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active-mobile');
+            mobileMenuBtn.classList.toggle('open');
+        });
+    }
 
     // Close mobile menu when clicking a link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active-mobile');
-            mobileMenuBtn.classList.remove('open');
+            if (mobileMenuBtn) mobileMenuBtn.classList.remove('open');
         });
     });
 
-    // Smooth Scrolling for Nav Links
+    // Smooth Scrolling for Nav Links (Anchor version)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const target = document.querySelector(targetId);
             if (target) {
                 window.scrollTo({
                     top: target.offsetTop - 80,
@@ -45,23 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                track: document.getElementById('track').value
-            };
-
-            // Show success message (placeholder logic)
             const submitBtn = form.querySelector('button');
             const originalText = submitBtn.innerText;
-
             submitBtn.innerText = 'Application Sent!';
             submitBtn.style.background = '#00b894';
             submitBtn.disabled = true;
-
-            console.log('Form Submitted:', formData);
 
             setTimeout(() => {
                 form.reset();
@@ -73,28 +65,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Intersection Observer for Animations
-    const observerOptions = {
-        threshold: 0.1
-    };
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.glass-card, .track-card, .timeline-item').forEach(el => {
         observer.observe(el);
     });
-});
 
-// Update active nav link based on current page
-document.addEventListener('DOMContentLoaded', () => {
+    // Active Nav Link Highlight
     const navItems = document.querySelectorAll('.nav-links a');
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-
     navItems.forEach(item => {
         const itemPath = item.getAttribute('href');
         item.classList.remove('active');
@@ -102,4 +87,29 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.add('active');
         }
     });
+
+    // Countdown Timer Logic
+    const countdownDate = new Date("March 15, 2026 18:00:00").getTime();
+    const countdownEl = document.getElementById('countdown');
+    if (countdownEl) {
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(timer);
+                countdownEl.innerHTML = "<h3>HACKING IN PROGRESS!</h3>";
+            }
+        }, 1000);
+    }
 });
