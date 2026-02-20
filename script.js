@@ -59,23 +59,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Form Submission Handling
+    // Form Submission Handling (AJAX version to prevent redirection)
     const form = document.getElementById('hacker-form');
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = form.querySelector('button');
             const originalText = submitBtn.innerText;
-            submitBtn.innerText = 'Application Sent!';
-            submitBtn.style.background = '#00b894';
-            submitBtn.disabled = true;
 
-            setTimeout(() => {
-                form.reset();
-                submitBtn.innerText = originalText;
-                submitBtn.style.background = '';
+            // UI Feedback: Start sending
+            submitBtn.innerText = 'Sending Application...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success State
+                    submitBtn.innerText = 'Application Received!';
+                    submitBtn.style.background = '#00b894';
+                    submitBtn.style.opacity = '1';
+                    form.reset();
+
+                    setTimeout(() => {
+                        submitBtn.innerText = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 5000);
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Submission failed');
+                }
+            } catch (error) {
+                // Error State
+                console.error('Form submission error:', error);
+                submitBtn.innerText = 'Error! Try Again';
+                submitBtn.style.background = '#ff4757';
                 submitBtn.disabled = false;
-            }, 3000);
+                submitBtn.style.opacity = '1';
+
+                setTimeout(() => {
+                    submitBtn.innerText = originalText;
+                    submitBtn.style.background = '';
+                }, 3000);
+            }
         });
     }
 
