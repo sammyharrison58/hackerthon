@@ -13,18 +13,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
 
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active-mobile');
-            mobileMenuBtn.classList.toggle('open');
-        });
+    // Create overlay if it doesn't exist
+    let overlay = document.querySelector('.nav-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'nav-overlay';
+        document.body.appendChild(overlay);
     }
+
+    const toggleMenu = () => {
+        const isOpen = navLinks.classList.toggle('active-mobile');
+        mobileMenuBtn.classList.toggle('open');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+    }
+
+    overlay.addEventListener('click', toggleMenu);
 
     // Close mobile menu when clicking a link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
-            navLinks.classList.remove('active-mobile');
-            if (mobileMenuBtn) mobileMenuBtn.classList.remove('open');
+            if (navLinks.classList.contains('active-mobile')) {
+                toggleMenu();
+            }
         });
     });
 
