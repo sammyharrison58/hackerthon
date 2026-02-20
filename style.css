@@ -58,7 +58,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 9999;
     transition: var(--transition);
     padding: 1.5rem 0;
     border-bottom: 1px solid transparent;
@@ -69,6 +69,7 @@ header.scrolled {
     backdrop-filter: blur(12px);
     padding: 1rem 0;
     border-bottom: 1px solid var(--glass-border);
+    z-index: 9999;
 }
 
 nav {
@@ -113,6 +114,23 @@ nav {
 .nav-links a:hover,
 .nav-links a.active {
     color: white;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.mobile-menu-btn span {
+    width: 30px;
+    height: 2px;
+    background: white;
+    transition: var(--transition);
+    border-radius: 2px;
 }
 
 /* Buttons */
@@ -742,23 +760,6 @@ textarea:focus {
     animation-delay: 0.4s;
 }
 
-/* Mobile Menu Button */
-.mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.mobile-menu-btn span {
-    width: 30px;
-    height: 2px;
-    background: white;
-    transition: var(--transition);
-    border-radius: 2px;
-}
-
 /* Hamburger Animation */
 .mobile-menu-btn.open span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
@@ -824,8 +825,7 @@ textarea:focus {
 
     .mobile-menu-btn {
         display: flex;
-        z-index: 2001;
-        /* Higher than nav-links to stay visible */
+        z-index: 10001;
         position: relative;
     }
 
@@ -866,13 +866,6 @@ textarea:focus {
 }
 
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
-    .mobile-menu-btn {
-        display: flex;
-    }
 
     .col-2,
     .col-3 {
