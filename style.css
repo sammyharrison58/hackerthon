@@ -157,6 +157,70 @@ nav {
     font-size: 1.1rem;
 }
 
+/* Sub-Hero for dedicated pages */
+.sub-hero {
+    padding: 160px 0 80px;
+    background: linear-gradient(135deg, #0a0a0c 0%, #1a0b2e 100%);
+    text-align: center;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.sub-hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.sub-hero p {
+    font-size: 1.25rem;
+    color: var(--text-dim);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Image Galleries & Tracks Detail */
+.image-gallery img {
+    width: 100%;
+    border-radius: 15px;
+    transition: var(--transition);
+}
+
+.gallery-item {
+    padding: 10px;
+}
+
+.track-detail {
+    margin-bottom: 40px;
+    padding: 40px;
+}
+
+.track-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.features-list {
+    margin-top: 2rem;
+}
+
+.features-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.stack-mobile {
+    align-items: center;
+}
+
+.reverse {
+    direction: rtl;
+}
+
+.reverse * {
+    direction: ltr;
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;

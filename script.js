@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             // Get form data
             const formData = {
                 name: document.getElementById('name').value,
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show success message (placeholder logic)
             const submitBtn = form.querySelector('button');
             const originalText = submitBtn.innerText;
-            
+
             submitBtn.innerText = 'Application Sent!';
             submitBtn.style.background = '#00b894';
             submitBtn.disabled = true;
@@ -90,23 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Update active nav link on scroll
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
+// Update active nav link based on current page
+document.addEventListener('DOMContentLoaded', () => {
     const navItems = document.querySelectorAll('.nav-links a');
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - 150)) {
-            current = section.getAttribute('id');
-        }
-    });
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
     navItems.forEach(item => {
+        const itemPath = item.getAttribute('href');
         item.classList.remove('active');
-        if (item.getAttribute('href').slice(1) === current) {
+        if (itemPath === currentPath) {
             item.classList.add('active');
         }
     });
