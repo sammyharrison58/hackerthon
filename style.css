@@ -11,6 +11,7 @@
     --glass-border: rgba(255, 255, 255, 0.1);
     --grad-main: linear-gradient(135deg, var(--primary), var(--secondary));
     --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --nav-height: 80px;
 }
 
 * {
@@ -25,6 +26,7 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
+    padding-top: var(--nav-height);
 }
 
 .container {
@@ -55,16 +57,18 @@ header {
     top: 0;
     width: 100%;
     z-index: 20000;
-    /* Extremely high to stay above overlay */
-    padding: 1.5rem 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    background: rgba(5, 5, 8, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
     transition: var(--transition);
 }
 
 header.scrolled {
-    padding: 1rem 0;
-    background: rgba(5, 5, 8, 0.9);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--glass-border);
+    height: 70px;
+    background: rgba(5, 5, 8, 0.95);
 }
 
 nav {
@@ -243,7 +247,7 @@ nav {
 
 /* Hero */
 .hero {
-    min-height: 100vh;
+    min-height: calc(100vh - var(--nav-height));
     display: flex;
     align-items: center;
     background: radial-gradient(circle at top right, #1a0b2e, transparent),
@@ -617,6 +621,151 @@ nav {
     }
 }
 
+/* Sub-Hero Section */
+.sub-hero {
+    padding: 100px 0 60px;
+    background: linear-gradient(to bottom, #0f0f19, #050508);
+    border-bottom: 1px solid var(--glass-border);
+    text-align: center;
+}
+
+.sub-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.sub-hero p {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Track Details Styles */
+.track-detail {
+    margin-bottom: 4rem;
+}
+
+.track-text {
+    padding: 2rem;
+}
+
+.reverse {
+    direction: ltr;
+    /* Default */
+}
+
+@media (min-width: 769px) {
+    .grid.reverse {
+        direction: rtl;
+    }
+
+    .grid.reverse>* {
+        direction: ltr;
+    }
+}
+
+/* FAQ Styles */
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: var(--transition);
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    margin-top: 1.5rem;
+    opacity: 1;
+}
+
+.faq-item i {
+    transition: var(--transition);
+}
+
+.faq-item.active i {
+    transform: rotate(45deg);
+    color: var(--primary);
+}
+
+/* Timeline/Schedule Styles */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 100px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--glass-border);
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 3rem;
+    gap: 50px;
+}
+
+.timeline-item .time {
+    min-width: 100px;
+    padding-top: 2rem;
+    font-weight: 700;
+    color: var(--secondary);
+    text-align: right;
+}
+
+.timeline-item .content {
+    flex: 1;
+}
+
+/* Prize Styles */
+.prize-card {
+    position: relative;
+    padding: 4rem 2rem;
+}
+
+.prize-rank {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+}
+
+.prize-amount {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--secondary);
+    font-family: 'Space Grotesk', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.prizes-grid {
+    align-items: flex-end;
+}
+
 /* Background Animations */
 .blob {
     position: absolute;
@@ -648,7 +797,6 @@ nav {
     visibility: hidden;
     transition: 0.3s;
     z-index: 15000;
-    /* Below the header (20000) */
 }
 
 .nav-overlay.active {
